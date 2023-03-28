@@ -1,0 +1,18 @@
+{
+  "name": "adminmanager",
+  "version": "1.0.0",
+  "description": "An app designed to manage the app Dietet",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager ."
+  },
+  "author": "Ferran Piles",
+  "license": "ISC",
+  "dependencies": {
+    "@electron/remote": "^2.0.9",
+    "electron": "^22.0.1",
+    "electron-packager": "^17.1.1",
+    "mongodb": "^4.13.0"
+  }
+}
