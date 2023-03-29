@@ -14,7 +14,7 @@ async function run() {
         const usersCollection = database.collection('admins');
         //paso toda la info de la Colección Users a un Array para trabajar con él
         admins = await usersCollection.find({}).toArray()
-        //admins.forEach(user => console.log(user))
+        admins.forEach(user => console.log(user))
     } finally {
         //Cliente se cerrará cuando la aplicación finalice/error
         await client.close();
