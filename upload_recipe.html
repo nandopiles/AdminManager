@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.app.css" />
+    <link rel="stylesheet" href="css/photos.css">
+    <link rel="stylesheet" href="css/categories.css">
+    <link rel="stylesheet" href="css/photon.css">
+    <link rel="stylesheet" href="css/photon.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <!-- CSS -->
+    <title>AdminManager</title>
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary fixed-top bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <p class="fs-2 fw-bold default-color">
+                <img src="img/SecondaryIcon.png" class="principal-logo" alt="Logo Img">
+                &nbsp;&nbsp;&nbsp;Dietet
+            </p>
+            <!-- Cancel Button -->
+            <button type="button" class="btn btn-outline-danger" id="btnCancel">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-asterisk" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z">
+                    </path>
+                </svg>
+                Cancel
+            </button>
+            <!-- Cancel Button -->
+        </div>
+    </nav>
+    <br><br><br>
+    <!-- Form -->
+    <div class="container">
+        <form class="mt-5">
+            <!-- Title -->
+            <div class="row">
+                <label for="title" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="title" placeholder="Blueberry cheesecake">
+                </div>
+            </div>
+            <!-- Title -->
+
+            <!-- Ingredients -->
+            <div class="form-group mt-2">
+                <label for="ingredients">Ingredients</label>
+                <textarea class="form-control" id="ingredients" rows="4"></textarea>
+            </div>
+            <!-- Ingredients -->
+
+            <!-- Category -->
+            <div class="form-group mt-2">
+                <label for="category">Category</label>
+                <select class="form-control" id="category">
+                    <option>Fit</option>
+                    <option>Normal</option>
+                    <option>Unhealthy</option>
+                </select>
+            </div>
+            <!-- Category -->
+
+            <!-- Prep Time -->
+            <div class="form-group row mt-2">
+                <label for="title" class="col-sm-2 col-form-label">Prep Time</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="prepTime" placeholder="30mins">
+                </div>
+            </div>
+            <!-- Prep Time -->
+
+            <!-- Steps -->
+            <div class="form-group mt-2">
+                <label for="ingredients">Step by Step</label>
+                <textarea class="form-control" id="steps" rows="8"></textarea>
+            </div>
+            <!-- Steps -->
+
+            <!-- Author -->
+            <div class="form-group row mt-2">
+                <label for="author" class="col-sm-2 col-form-label">Author</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="author" placeholder="Ferran Piles">
+                </div>
+            </div>
+            <!-- Author -->
+        </form>
+
+        <!-- Form -->
+
+
+        <!-- Button Submit -->
+        <button type="button" class="btn btn-outline-success mt-4 float-xl-end">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill"
+                viewBox="0 0 16 16">
+                <path
+                    d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z">
+                </path>
+            </svg>
+            Submit
+        </button>
+        <!-- Button Submit -->
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+<script src="upload_recipe.js"></script>
+
+</html>

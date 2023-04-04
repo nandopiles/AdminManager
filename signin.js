@@ -7,15 +7,14 @@ const client = new MongoClient(uri);
 
 
 let admins
-let usersCollection
+let adminsCollection
 
 async function run() {
     await client.connect()
     const database = client.db('Dietet_db');
-    usersCollection = database.collection('admins');
-    //paso toda la info de la Colección Users a un Array para trabajar con él
-    admins = await usersCollection.find({}).toArray()
-    //users.forEach(user => console.log(user))
+    adminsCollection = database.collection('admins');
+    
+    admins = await adminsCollection.find({}).toArray()
 }
 
 run()
@@ -27,8 +26,9 @@ run()
                 password: document.getElementById("password1-sign").value
             }
             admins.push(newAdmin)
-            await usersCollection.insertOne(newAdmin)
+            await adminsCollection.insertOne(newAdmin)
             console.log("[+] Admin Inserted " + newAdmin)
+            window.location = "login.html"
         }
 
         let deleteData = () => {
@@ -39,7 +39,7 @@ run()
 
         let message
 
-        //falta comprobación de email
+        //no email to send
         document.getElementById("btnSign").addEventListener('click', (e) => {
             e.preventDefault()
             if (document.getElementById("password1-sign").value == document.getElementById("password2-sign").value) {

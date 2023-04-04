@@ -21,12 +21,81 @@ async function run() {
     }
 }
 
+
 run()
     .then(() => {
 
         /**
+         * Deletes the recipe in the DB and in the array
+         * @param {*} element The recipe you want to delete
+         * @param {*} index The position of the recipe in the array
+         */
+        let deleteRecipe = async (element, index) => {
+            await client.connect()
+
+            await recipesCollection.deleteOne({ _id: element._id }, function (err, result) {
+                if (err) throw err;
+                console.log(result);
+            })
+            recipes.splice(index, 1)
+        }
+
+        /**
+         * Creates the Listener for Deleting a recipe
+         */
+        let createListenersDeleting = () => {
+            recipes.forEach((element, index) => {
+                document.getElementById("btnDelete" + index).addEventListener('click', async (e) => {
+                    e.preventDefault()
+                    let confirmation = confirm("Are you sure to delete the recipe:\n" + recipes[index].name + "?");
+                    if (confirmation) {
+                        await deleteRecipe(element, index)
+                        console.log("[+] Recipe Deleted");
+                        showRecipes()
+                    } else {
+                        console.log("[+] Recipe NOT deleted");
+                        return false;
+                    }
+                })
+            });
+        }
+
+        /**
+         * Put the info of the recipe the user clicked
+         */
+        let editRecipe = (element) => {
+
+
+        }
+
+        /**
+         * Creates the Listener for Editing a recipe ()
+         */
+        let createListenersEditing = () => {
+            recipes.forEach((recipe, index) => {
+                document.getElementById("btnEdit" + index).addEventListener('click', (e) => {
+                    e.preventDefault()
+                    //Put all the info in the HTML to edit it
+                    module.exports = recipe //exports the variable element to the js file => editPage.js
+                    window.location = "edit_page.html"
+                    //let testIngredients = ""
+                    //let ingredients = element.ingredients.split(".")
+                    //console.log(recipe.ingredients);
+                    //ingredients.forEach(ingredient => {
+                    //    //testIngredients += `${ingredient}</br>`
+                    //    
+                    //});
+                    //document.getElementById("test").innerHTML = testIngredients
+
+
+                    //[-] When the editPage.html watch the js code it starts to exe using the function "showRecipes"
+                    //[-] When the function tries to create the listeners, there're no objects to do it. BREAK
+                })
+            });
+        }
+
+        /**
          * Prints all the recipes stored in the DB in a striped list view
-         * @returns HTML code of all the recipes
          */
         let showRecipes = () => {
             /**
@@ -109,7 +178,10 @@ run()
                 </tbody>
             </table>
             `
-            return listRecipes
+            document.getElementById("gallery").innerHTML = listRecipes
+
+            createListenersDeleting()
+            createListenersEditing()
         }
 
         /**
@@ -120,45 +192,14 @@ run()
             window.location = "login.html"
         })
 
-        document.getElementById("gallery").innerHTML = showRecipes()
-
-        let deleteRecipe = async (element, index) => {
-            await client.connect()
-
-            await recipesCollection.deleteOne({ _id: element._id }, function (err, result) {
-                if (err) throw err;
-                console.log(result);
-            })
-            recipes.splice(index, 1)
-        }
-
         /**
-         * Creates the Listener for Deleting a recipe
+         * Button for Uploading a new recipe
          */
-        let createListenersDeleting = () => {
-            recipes.forEach((element, index) => {
-                document.getElementById("btnDelete" + index).addEventListener('click', async () => {
-                    let confirmation = confirm("Are you sure to delete the recipe:\n" + recipes[index].name + "?");
-                    if (confirmation) {
-                        await deleteRecipe(element, index)
-                        console.log("[+] Recipe Deleted");
-                        document.getElementById("gallery").innerHTML = showRecipes()
-                    } else {
-                        console.log("[+] Recipe NOT deleted");
-                        return false;
-                    }
-                })
-            });
-        }
+        document.getElementById("btnUploadRecipe").addEventListener('click', (e) => {
+            e.preventDefault()
+            window.location = "upload_recipe.html"
+        })
 
-        createListenersDeleting()
-
-        /**
-         * Creates the Listener for Editing a recipe ()
-         */
-        let createListenersEditing = () => {
-
-        }
-
+        showRecipes()
     })
     .catch(console.dir)

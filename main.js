@@ -3,8 +3,8 @@ require('@electron/remote/main').initialize()
 
 function createWindow() {
     let win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        fullscreen: true,
+        icon: "img/PrincipalIcon.png",
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
@@ -12,7 +12,7 @@ function createWindow() {
     })
     require("@electron/remote/main").enable(win.webContents)
     win.loadFile('login.html')
-    win.setMenu(null)
+    //win.setMenu(null)
 
     win.webContents.openDevTools()
 }
