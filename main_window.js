@@ -64,8 +64,7 @@ run()
          * Put the info of the recipe the user clicked
          */
         let editRecipe = (element) => {
-
-
+            
         }
 
         /**
