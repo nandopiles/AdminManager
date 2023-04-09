@@ -61,13 +61,6 @@ run()
         }
 
         /**
-         * Put the info of the recipe the user clicked
-         */
-        let editRecipe = (element) => {
-            
-        }
-
-        /**
          * Creates the Listener for Editing a recipe ()
          */
         let createListenersEditing = () => {
@@ -92,6 +85,8 @@ run()
                 })
             });
         }
+
+        
 
         /**
          * Prints all the recipes stored in the DB in a striped list view
@@ -154,7 +149,7 @@ run()
                 }
                 listRecipes += category
 
-                //buttons of Editing and Deleting recipes
+                //buttons for Editing and Deleting recipes
                 listRecipes += `
                     <td>
                         <button type="button" class="btn btn-success" id="btnEdit${index}">
@@ -197,6 +192,14 @@ run()
         document.getElementById("btnUploadRecipe").addEventListener('click', (e) => {
             e.preventDefault()
             window.location = "upload_recipe.html"
+        })
+
+        /**
+         * Button for Listing all Users
+         */
+        document.getElementById("btnListUsers").addEventListener('click', (e) => {
+            e.preventDefault()
+            window.location = "list_users.html"
         })
 
         showRecipes()
