@@ -68,8 +68,8 @@ run()
                 document.getElementById("btnEdit" + index).addEventListener('click', (e) => {
                     e.preventDefault()
                     //Put all the info in the HTML to edit it
-                    module.exports = recipe //exports the variable element to the js file => editPage.js
-                    window.location = "edit_page.html"
+                    module.exports = 11 //exports the variable element to the js file => editPage.js
+                    window.location = "edit_page.html?id="+recipe._id
                     //let testIngredients = ""
                     //let ingredients = element.ingredients.split(".")
                     //console.log(recipe.ingredients);
