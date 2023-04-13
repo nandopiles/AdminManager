@@ -33,10 +33,7 @@ run()
         let deleteRecipe = async (element, index) => {
             await client.connect()
 
-            await recipesCollection.deleteOne({ _id: element._id }, function (err, result) {
-                if (err) throw err;
-                console.log(result);
-            })
+            await recipesCollection.deleteOne({ _id: element._id })
             recipes.splice(index, 1)
         }
 
@@ -67,26 +64,12 @@ run()
             recipes.forEach((recipe, index) => {
                 document.getElementById("btnEdit" + index).addEventListener('click', (e) => {
                     e.preventDefault()
-                    //Put all the info in the HTML to edit it
-                    module.exports = 11 //exports the variable element to the js file => editPage.js
-                    window.location = "edit_page.html?id="+recipe._id
-                    //let testIngredients = ""
-                    //let ingredients = element.ingredients.split(".")
-                    //console.log(recipe.ingredients);
-                    //ingredients.forEach(ingredient => {
-                    //    //testIngredients += `${ingredient}</br>`
-                    //    
-                    //});
-                    //document.getElementById("test").innerHTML = testIngredients
-
-
-                    //[-] When the editPage.html watch the js code it starts to exe using the function "showRecipes"
-                    //[-] When the function tries to create the listeners, there're no objects to do it. BREAK
+                    window.location = "edit_page.html?id=" + recipe._id
                 })
             });
         }
 
-        
+
 
         /**
          * Prints all the recipes stored in the DB in a striped list view

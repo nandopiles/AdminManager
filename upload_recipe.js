@@ -32,7 +32,6 @@ run()
             let confirmation = confirm("Are you sure to exit?\nYou will lose all changes.");
             if (confirmation) {
                 window.location = "main_window.html"
-
             }
         })
 
