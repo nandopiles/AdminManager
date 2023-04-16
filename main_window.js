@@ -40,15 +40,15 @@ run()
         /**
          * Creates the Listener for Deleting a recipe
          */
-        let createListenersDeleting = () => {
-            recipes.forEach((element, index) => {
+        let createListenersDeleting = (recipesShow) => {
+            recipesShow.forEach((element, index) => {
                 document.getElementById("btnDelete" + index).addEventListener('click', async (e) => {
                     e.preventDefault()
-                    let confirmation = confirm("Are you sure to delete the recipe:\n" + recipes[index].name + "?");
+                    let confirmation = confirm("Are you sure to delete the recipe:\n" + recipesShow[index].name + "?");
                     if (confirmation) {
                         await deleteRecipe(element, index)
                         console.log("[+] Recipe Deleted");
-                        showRecipes()
+                        showRecipes(recipesShow)
                     } else {
                         console.log("[+] Recipe NOT deleted");
                         return false;
@@ -60,8 +60,8 @@ run()
         /**
          * Creates the Listener for Editing a recipe ()
          */
-        let createListenersEditing = () => {
-            recipes.forEach((recipe, index) => {
+        let createListenersEditing = (recipesShow) => {
+            recipesShow.forEach((recipe, index) => {
                 document.getElementById("btnEdit" + index).addEventListener('click', (e) => {
                     e.preventDefault()
                     window.location = "edit_page.html?id=" + recipe._id
@@ -74,7 +74,7 @@ run()
         /**
          * Prints all the recipes stored in the DB in a striped list view
          */
-        let showRecipes = () => {
+        let showRecipes = (recipesShow) => {
             /**
              * Exercise BookShop[Client] =>
              * 
@@ -101,7 +101,7 @@ run()
                 </thead>
                 <tbody>`
 
-            recipes.forEach((element, index) => {
+            recipesShow.forEach((element, index) => {
                 listRecipes += `
                 <tr>
                     <th scope="row"><img class="lists-photos" src="img/DefaultRecipePicture.png" alt="Recipe${index}"></th>
@@ -157,9 +157,25 @@ run()
             `
             document.getElementById("gallery").innerHTML = listRecipes
 
-            createListenersDeleting()
-            createListenersEditing()
+            createListenersDeleting(recipesShow)
+            createListenersEditing(recipesShow)
         }
+
+        /**
+         * Searches the recipes comparing the input user's writen
+         */
+        document.getElementById("searchBox").addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault()
+                let listRecipesFound = []
+                recipes.forEach(recipe => {
+                    if (recipe.name.toLowerCase().includes(document.getElementById("searchBox").value.toLowerCase())) {
+                        listRecipesFound.push(recipe)
+                    }
+                });
+                showRecipes(listRecipesFound)
+            }
+        })
 
         /**
          * Button for Logging Out
@@ -185,6 +201,6 @@ run()
             window.location = "list_users.html"
         })
 
-        showRecipes()
+        showRecipes(recipes)
     })
     .catch(console.dir)
