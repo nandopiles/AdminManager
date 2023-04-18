@@ -69,8 +69,6 @@ run()
             });
         }
 
-
-
         /**
          * Prints all the recipes stored in the DB in a striped list view
          */
