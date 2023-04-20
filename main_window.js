@@ -73,18 +73,6 @@ run()
          * Prints all the recipes stored in the DB in a striped list view
          */
         let showRecipes = (recipesShow) => {
-            /**
-             * Exercise BookShop[Client] =>
-             * 
-             * <div class="col-lg-2 col-md-4 col-6 w-auto" id="recipe${index}">
-                    <figure class="figure rounded-2 shadow-lg">
-                            <img alt="image${index}" class="img-fluid img-thumbnail figure-img shadow m-2" src="img/DefaultRecipePicture.png" style="width: 300px; height: 300px; object-fit: fill">
-                            <br/>
-                            <h5><b>${element.name}</b></h5>
-                            <p>${element.ingredients}</p>
-                    </figure>
-                </div>
-             */
             let listRecipes = `
             <table class="table table-striped">
                 <thead>
@@ -160,7 +148,7 @@ run()
         }
 
         /**
-         * Searches the recipes comparing the input user's writen
+         * Searches the recipes comparing the input user's written
          */
         document.getElementById("searchBox").addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {

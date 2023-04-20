@@ -81,7 +81,7 @@ run()
                 }
 
                 await client.connect()
-                const result = await recipesCollection.insertOne({
+                await recipesCollection.insertOne({
                     name: document.getElementById("title").value,
                     ingredients: document.getElementById("ingredients").value,
                     prepTime: document.getElementById("prepTime").value,

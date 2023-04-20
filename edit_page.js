@@ -40,14 +40,6 @@ run()
          */
         let fillInfoRecipe = (recipe) => {
             document.getElementById("title").value = recipe.name
-            /*
-            CLIENT APP
-            let textIngredients = ""
-            let ingredients = recipe.ingredients.split(",")
-            ingredients.forEach(ingredient => {
-                textIngredients += `${ingredient}</br>`
-            });
-            document.getElementById("ingredients").value = textIngredients*/
             document.getElementById("ingredients").value = recipe.ingredients
             document.getElementById("prepTime").value = recipe.prepTime
             document.getElementById("author").value = recipe.author
@@ -94,21 +86,28 @@ run()
 
             //it doesn't update
             await client.connect()
-            let filter = { _id: recipeId }
-            let update = {
-                $set: {
-                    name: document.getElementById("title").value,
-                    ingredients: document.getElementById("ingredients").value,
-                    prepTime: document.getElementById("prepTime").value,
-                    author: document.getElementById("author").value,
-                    steps: document.getElementById("steps").value,
-                    category: categoryNumber
-                }
+            try {
+                await recipesCollection.updateOne(
+                    { _id: recipeId },
+                    {
+                        $set: {
+                            name: document.getElementById("title").value,
+                            ingredients: document.getElementById("ingredients").value,
+                            prepTime: document.getElementById("prepTime").value,
+                            author: document.getElementById("author").value,
+                            steps: document.getElementById("steps").value,
+                            category: categoryNumber
+                        }
+                    })
+                //text => compass
+                console.log("ok");
+            } catch (error) {
+                console.log(error);
             }
-            await recipesCollection.updateOne(filter, update)
 
             console.log("[+] Recipe " + document.getElementById("title").value + " has been updated.");
-            fillInfoRecipe(recipeSearched)
+            //fillInfoRecipe(recipeSearched)
+            client.close()
         })
     })
     .catch(console.dir)

@@ -35,20 +35,21 @@ run()
                 console.log(result);
             })
             users.splice(index, 1)
+            client.close()
         }
 
         /**
          * Creates the Listener for Deleting a user
          */
-        let createListenersDeleting = () => {
-            users.forEach((element, index) => {
+        let createListenersDeleting = (list) => {
+            list.forEach((element, index) => {
                 document.getElementById("btnDelete" + index).addEventListener('click', async (e) => {
                     e.preventDefault()
-                    let confirmation = confirm("Are you sure to delete the User:\n" + users[index].name + "?");
+                    let confirmation = confirm("Are you sure to delete the User:\n" + list[index].name + "?");
                     if (confirmation) {
                         await deleteUser(element, index)
                         console.log("[+] User Deleted");
-                        listUsers()
+                        listUsers(list)
                     } else {
                         console.log("[+] User NOT deleted");
                         return false;
@@ -60,7 +61,7 @@ run()
         /**
          * Lists all Users of the Collection 'Users'
          */
-        let listUsers = () => {
+        let listUsers = (list) => {
             let usersList = `
             <table class="table table-striped">
                 <thead>
@@ -73,7 +74,7 @@ run()
                 </thead>
                 <tbody>`
 
-            users.forEach((element, index) => {
+            list.forEach((element, index) => {
                 usersList += `
                 <tr>
                     <th scope="row"><img class="lists-photos" src="img/DefaultProfilePicture.png" alt="User${index}"></th>
@@ -97,7 +98,7 @@ run()
             </table>
             `
             document.getElementById("listContainer").innerHTML = usersList
-            createListenersDeleting()
+            createListenersDeleting(list)
         }
 
         /**
@@ -107,6 +108,22 @@ run()
             e.preventDefault()
             window.location = "main_window.html"
         })
-        listUsers()
+        listUsers(users)
+
+        /**
+         * Searches the recipes comparing the input user's written
+         */
+        document.getElementById("searchBox").addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault()
+                let listUsersFound = []
+                users.forEach(user => {
+                    if (user.name.toLowerCase().includes(document.getElementById("searchBox").value.toLowerCase())) {
+                        listUsersFound.push(user)
+                    }
+                });
+                listUsers(listUsersFound)
+            }
+        })
     })
     .catch(console.dir);
