@@ -24,18 +24,6 @@ async function run() {
 run()
     .then(() => {
         /**
-         * Creates the Listener for exiting of the window.
-         */
-        document.getElementById("btnCancel").addEventListener('click', (e) => {
-            e.preventDefault()
-
-            let confirmation = confirm("Are you sure to exit?\nYou will lose all changes.");
-            if (confirmation) {
-                window.location = "main_window.html"
-            }
-        })
-
-        /**
          * Returns true if there's some field that isn't filled.
          */
         let checkIfSomeFieldIsNotFilled = () => {
@@ -45,6 +33,15 @@ run()
                 return true;
             }
         }
+
+        /**
+         * Creates the Listener for exiting of the window.
+         */
+        document.getElementById("btnCancel").addEventListener('click', (e) => {
+            e.preventDefault()
+
+            window.location = "main_window.html"
+        })
 
         /**
          * Puts all fields of the Form in Blank ready to use it another time.

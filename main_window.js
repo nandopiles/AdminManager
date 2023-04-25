@@ -118,7 +118,6 @@ run()
                 }
                 listRecipes += category
 
-                //buttons for Editing and Deleting recipes
                 listRecipes += `
                     <td>
                         <button type="button" class="btn btn-success" id="btnEdit${index}">

@@ -2,4 +2,19 @@
     color: #43a047;
 }
 
+body::-webkit-scrollbar {
+    width: 7px;
+}
 
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(151, 255, 116);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+    display: block;
+}
+
+body {
+    overflow-y: scroll;
+}
