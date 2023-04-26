@@ -88,7 +88,7 @@ run()
             await client.connect()
             try {
                 await recipesCollection.updateOne(
-                    { _id: recipeId },
+                    { _id: recipeSearched._id },
                     {
                         $set: {
                             name: document.getElementById("title").value,
