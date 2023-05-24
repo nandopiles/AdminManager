@@ -14,7 +14,7 @@ function createWindow() {
     });
     require("@electron/remote/main").enable(win.webContents)
     win.loadFile('login.html')
-    //win.setMenu(null)
+    win.setMenu(null)
 
     win.webContents.openDevTools()
 }
